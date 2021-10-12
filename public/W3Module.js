@@ -15,7 +15,7 @@ var W3Module = (function() {
     let time = 0;
     let fileSize = 0;
     let bufferHeader = null;
-    let worker = new Worker("./process.js");
+    let worker = new Worker("process.js");
     let options = {};
 
     const _appendBuffer = function(buffer1, buffer2) {
@@ -48,7 +48,6 @@ var W3Module = (function() {
       offset = 0;
       time = 0;
       return new Promise(function (resolve, reject) {
-        console.log('11');
         worker.onmessage = (event) => {
           console.log(`Piece of Buffer ${event.data.index} / ${limit + 1} - Finish : ${event.data.duration} ms `);
           time += event.data.duration;
